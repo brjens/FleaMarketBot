@@ -31,8 +31,10 @@ public class App extends ListenerAdapter {
 
    @Override
 public void onMessageReceived(MessageReceivedEvent event) {
-    if (event.getAuthor().isBot()) return;
-
+    if (event.getAuthor().isBot()) {
+        System.err.println("Received message from bot: " + event.getMessage().getContentRaw());
+        return;
+    }
     String message = event.getMessage().getContentRaw();
     System.out.println("Received message: " + message);
 

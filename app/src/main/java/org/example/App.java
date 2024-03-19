@@ -59,7 +59,7 @@ public void onMessageReceived(MessageReceivedEvent event) {
         if (command.equals("price")) {
             String itemName = event.getOption("item").getAsString();
             String price = getPrice(itemName);
-            event.reply("The price of " + itemName + " is " + price + " RUB").setEphemeral(true).queue();
+            event.reply("The price of a " + itemName + " is " + price + " RUB").setEphemeral(true).queue();
         }
     }
 
@@ -90,5 +90,7 @@ public void onMessageReceived(MessageReceivedEvent event) {
       
        event.getGuild().updateCommands().addCommands(commandData).queue();
     }
+
+}
 
     

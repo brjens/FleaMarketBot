@@ -21,8 +21,11 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
 
-    // This dependency is used by the application to work with 
+    // This dependency is for JDA ( Java Discord )
     implementation("net.dv8tion:JDA:5.0.0-beta.20")
+
+    //this dependacy is used for json-simple, a json Java library
+    implementation ("com.googlecode.json-simple:json-simple:1.1.1")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

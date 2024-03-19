@@ -4,5 +4,6 @@
 # Ignore Gradle build output directory
 build
 
+# Ignore the the java class that holds the privite Discord bot token
 Token.java
 

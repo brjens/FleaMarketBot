@@ -1,12 +1,10 @@
 package org.example;
 
-import javax.print.DocFlavor.STRING;
 import javax.security.auth.login.LoginException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
@@ -59,16 +57,28 @@ public void onMessageReceived(MessageReceivedEvent event) {
         if (command.equals("price")) {
             String itemName = event.getOption("item").getAsString();
             String price = getPrice(itemName);
-            event.reply("The price of a " + itemName + " is " + price + " RUB").setEphemeral(true).queue();
+            String name = getName(itemName);
+            event.reply("The price of a " + name + " is " + price + " RUB").setEphemeral(true).queue();
         }
     }
 
     private String getPrice(String itemName) {
-        TarkovAPI tarkovAPI = new TarkovAPI();
         String price="";
+            price = JsonParser.getItemString(apiResponse(itemName), "avg24hPrice");
+        return price;
+    }
+
+    private String getName(String itemName) {
+        String name="";
+            name = JsonParser.getItemString(apiResponse(itemName), "name");
+        return name;
+    }
+
+    private String apiResponse(String itemName) {
+        TarkovAPI tarkovAPI = new TarkovAPI();
+        String response = "";
         try {
-            price = tarkovAPI.getJsonString(itemName);
-            price = JsonParser.getAvg24hPrice(price);
+            response = tarkovAPI.getJsonString(itemName);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -76,7 +86,7 @@ public void onMessageReceived(MessageReceivedEvent event) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return price;
+        return response;
     }
 
     // this build the list of commands

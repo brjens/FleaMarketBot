@@ -6,7 +6,7 @@ import org.json.simple.parser.ParseException;
 public class JsonParser {
 
 
-  public static String getAvg24hPrice(String jsonString) {
+  public static String getItemString(String jsonString, String propertyName) {
       JSONParser parser = new JSONParser();
       try {
           JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
@@ -16,11 +16,11 @@ public class JsonParser {
               throw new JSONException("No items found in the JSON data");
           }
           JSONObject firstItem = (JSONObject) itemsArray.get(0); // Assuming there is only one item
-          if (!firstItem.containsKey("avg24hPrice")) {
-              throw new JSONException("Cannot find avg24hPrice in the JSON data");
+          if (!firstItem.containsKey(propertyName)) {
+              throw new JSONException("Cannot find" + propertyName + "in the JSON data");
           }
-          Long avg24hPrice = (Long) firstItem.get("avg24hPrice"); // Extracting avg24hPrice as a Long
-          return String.valueOf(avg24hPrice); // Converting Long to String
+          Object propertyValue = firstItem.get(propertyName); // Extracting avg24hPrice as a Long
+          return String.valueOf(propertyValue); // Converting Long to String
       } catch (ParseException | JSONException e) {
           e.printStackTrace();
               System.err.println("Error: " + e.getMessage());

@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 public class TarkovAPI {
     public String getJsonString(String queryId) throws IOException, InterruptedException {
         // Build the GraphQL query as a string
-        String query = Query(queryId);
+        String query = new Query(queryId).toString();
 
         // Create an instance of HttpClient for making HTTP requests
         HttpClient client = HttpClient.newBuilder().build();
@@ -32,11 +32,4 @@ public class TarkovAPI {
         return jsonString;
     }
 
-    public String Query(String queryId){
-        // Construct the GraphQL query string with the variable using string formatting
-        String query = String.format("{\"query\": \"{ items(name: \\\"%s\\\") {name avg24hPrice } }\"}", queryId);
-        return query;
-
-
-    }
 }

@@ -3,8 +3,8 @@ package org.example;
 public class Query {
 
     String response;
-   
-    public Query(){
+
+    public Query() {
         response = "";
     }
 
@@ -12,12 +12,12 @@ public class Query {
         setPriceResponse(queryId);
     }
 
-    public void setPriceResponse(String queryId){
+    public void setPriceResponse(String queryId) {
         // Construct the GraphQL query string with the variable using string formatting
         response = String.format("{\"query\": \"{ items(name: \\\"%s\\\") {name avg24hPrice } }\"}", queryId);
     }
 
-    public String toString(){
+    public String toString() {
         return response;
     }
 }

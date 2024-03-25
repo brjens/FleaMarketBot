@@ -24,7 +24,10 @@ public class QueryTest {
 
     @Test
     void emptyStringTest(){
-        String queryId = "";
+        String queryId = null;
+        String queryClasString= new Query(queryId).toString();
+        
+        System.out.println(queryClasString);
     }
     
 }
